@@ -1,0 +1,21 @@
+<script src="js/minicart.js"></script>
+	<script>
+		paypals.minicarts.render(); //use only unique class names other than paypals.minicarts.Also Replace same class name in css and minicart.min.js
+
+		paypals.minicarts.cart.on('checkout', function (evt) {
+			var items = this.items(),
+				len = items.length,
+				total = 0,
+				i;
+
+			// Count the number of each item in the cart
+			for (i = 0; i < len; i++) {
+				total += items[i].get('quantity');
+			}
+
+			if (total < 3) {
+				alert('Số lượng đặt hàng tối thiểu là 3. Vui lòng thêm nhiều hơn vào giỏ hàng của bạn trước khi thanh toán');
+				evt.preventDefault();
+			}
+		});
+</script>
